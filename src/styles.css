@@ -1,0 +1,12 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+.buttons {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #b0afaf
+}
+
+.buttons:hover {
+    background-color: rgb(57, 57, 57);
+    color: #ffff;
+}

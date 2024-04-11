@@ -1,0 +1,63 @@
+<div class="container py-5">
+  <div class="row mb-3">
+    <div class="col-md-9 themed-grid-col">
+      
+      <h2 class="fs-1 text-uppercase">{{biblioteca.name}}</h2>
+      
+      <div class="mt-4">
+        <h4>Informações biblioteca:</h4>
+
+        <p class="text-muted my-3">
+          <strong>Morada:</strong>
+          {{biblioteca.address}}
+        </p>
+
+        <p class="text-muted my-3">
+          <strong>Dias Aberta:</strong>
+          {{biblioteca.openDays}}
+        </p>
+       
+        <p *ngIf="biblioteca.open" class="text-muted my-3">
+          <strong>Horário de Funcionamento:</strong>
+          Aberta das {{biblioteca.openTime}} até as {{biblioteca.closeTime}}
+        </p>
+
+        <p *ngIf="biblioteca.open" class="text-muted">
+          <strong>Estado Atual: </strong>Aberta
+        </p>
+        <p *ngIf="!biblioteca.open" class="text-muted">
+          Estado fechada
+        </p>
+
+      </div>
+
+
+      <div>
+        <h4>Livros:</h4>
+        CARD COM 4 LIVROS
+      </div>
+
+
+      <button type="button" class="buttons" [disabled]="!biblioteca.open">
+        Ver livros biblioteca
+      </button>
+      <button *ngIf="biblioteca.open" type="button" class="buttons mx-3">
+        Ver livros utilizador
+      </button>
+
+      <pre>
+        {{books | json}}
+      </pre>
+      
+      <!--
+      <p class="text-muted">{{biblioteca | json}}</p>  
+      <p>userId: {{userId}}</p>
+      -->
+    
+    </div>
+    <!-- Coluna lateral com seleção de biblioteca -->
+    <div class="col-md-3 themed-grid-col">
+      <seleciona-biblioteca (updateBibioteca)="getBiblioId($event)"></seleciona-biblioteca>
+    </div>
+  </div>
+</div>

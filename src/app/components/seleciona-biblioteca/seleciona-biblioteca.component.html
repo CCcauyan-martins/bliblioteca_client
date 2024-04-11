@@ -1,0 +1,42 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light display-4">Bibliotecas disponíveis</h1>
+      <p class="lead text-muted fs-4">Selecione a biblioteca que deseja usar.</p>
+    </div>
+  </div>
+</section>
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let bibio of libraries" class="p-2 col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h2>{{bibio.name|uppercase}}</h2>
+            <p class="card-text">
+              <strong>Morada:</strong>
+              {{bibio.address}}
+            </p>
+            <p class="card-text">
+              <strong>Dias Aberta:</strong>
+              {{bibio.openDays}}
+            </p>
+            <p>
+              <strong>Horário de Funionamento:</strong>
+              Aberta das {{bibio.openTime}} até {{bibio.closeTime}}.
+            </p>
+            
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a *ngIf="bibio.open" (click)="goToBibiloteca(bibio.id)">
+                  <button *ngIf="bibio.open" type="button" class="btn btn-sm btn-outline-success">Selecionar em rota</button> 
+                </a>
+                <button *ngIf="!bibio.open" type="button" disabled class="btn btn-sm btn-outline-danger">Selecionar</button>
+              </div>
+              <small *ngIf="bibio.open" class="text-muted">Aberta</small>
+              <small *ngIf="!bibio.open" class="text-muted">Fechada</small>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
