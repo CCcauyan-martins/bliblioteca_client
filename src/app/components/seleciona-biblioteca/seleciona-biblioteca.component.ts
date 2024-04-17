@@ -24,11 +24,15 @@ export class SelecionaBibliotecaComponent implements OnInit{
     this.biblioService.getLibraries().subscribe(value => this.libraries = value);
   }
 
+  
+
   goToBibiloteca(biblioId: any){
+
     let url = '/biblio/' + biblioId;
     this.updateBibioteca.emit(biblioId);
     this.router.navigateByUrl(url);
   }
+
 
 
 }

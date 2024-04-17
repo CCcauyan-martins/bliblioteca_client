@@ -1,6 +1,6 @@
 <div class="container py-5">
   <div class="row mb-3">
-    <div class="col-md-9 themed-grid-col">
+    <div class="col-md-12 themed-grid-col">
       
       <h2 class="fs-1 text-uppercase">{{biblioteca.name}}</h2>
       
@@ -32,22 +32,45 @@
       </div>
 
 
-      <div>
-        <h4>Livros:</h4>
-        CARD COM 4 LIVROS
-      </div>
-
-
-      <button type="button" class="buttons" [disabled]="!biblioteca.open">
-        Ver livros biblioteca
-      </button>
+      
       <button *ngIf="biblioteca.open" type="button" class="buttons mx-3">
         Ver livros utilizador
       </button>
 
-      <pre>
-        {{books | json}}
-      </pre>
+
+      <h2 class="mt-4 mb-3">Livros Disponíveis: </h2>
+      
+      <div class="row">
+          <div class="col-lg-4 mb-2" *ngFor="let book of books">
+            <div class="card pb-4" style="height: 600px;">
+              <img [src]="'https://193.136.62.24/v1/assets/cover/' + book.book.isbn + '-L.jpg'" class="img-fluid card-img-top" style="height: 70%;">
+              <div class="card-body">
+                <h3 class="card-title">{{book.book.title}}</h3>
+                <p class="card-text"> <strong>Ano de publicação:</strong> {{book.book.publishDate}}</p>
+                <p class="card-text"> <strong>Autor:</strong> {{book.book.authors[0].name}}</p>
+                <p class="card-text"> <strong>Stock:</strong> estão disponeis {{book.available}} de {{book.stock}}</p>
+                <button class="btn bg-primary text-light" (click)="goToBook(book.book.isbn)">Ver Livro</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+
+
+      <!--
+      <h2>Livros Disponíveis: </h2>
+      <div class="row" *ngFor="let book of books">
+        <div class="card col-md-4">
+          <img class="card-img-top" [src]=" 'https://193.136.62.24/api/v1/assets/cover/' + book.book.isbn + '-M.jpg'">
+          <div class="card-body">
+            <h5 class="card-title">{{book.book.title}}</h5>
+            <p class="card-text">{{book.book.description}}</p>
+            <p class="card-text">{{book.book.authors[0].name}}</p>
+            <a href="#" class="btn btn-primary">Visitar</a>
+          </div>
+        </div>
+      </div>
+      -->
       
       <!--
       <p class="text-muted">{{biblioteca | json}}</p>  
@@ -56,8 +79,6 @@
     
     </div>
     <!-- Coluna lateral com seleção de biblioteca -->
-    <div class="col-md-3 themed-grid-col">
-      <seleciona-biblioteca (updateBibioteca)="getBiblioId($event)"></seleciona-biblioteca>
-    </div>
+    
   </div>
 </div>

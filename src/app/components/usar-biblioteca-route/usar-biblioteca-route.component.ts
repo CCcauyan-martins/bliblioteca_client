@@ -1,10 +1,11 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { BibliotecaServiceService } from '../../services/biblioteca-service.service';
 import { Biblioteca } from '../../model/Biblioteca';
 import { SelecionaBibliotecaComponent } from '../seleciona-biblioteca/seleciona-biblioteca.component';
 import { AppService } from '../../services/app.service';
+
 
 @Component({
   selector: 'usar-biblioteca-route',
@@ -23,7 +24,7 @@ export class UsarBibliotecaRouteComponent implements OnInit{
   userId:string='';
   @Input('selectedLibraryId') libraryId='';
 
-  constructor(private bibliotecaService: BibliotecaServiceService, private route:ActivatedRoute, private appService: AppService) {
+  constructor(private bibliotecaService: BibliotecaServiceService, private route:ActivatedRoute, private appService: AppService, private router: Router) {
     this.biblioteca = {} as Biblioteca;
     this.appService.getUserId.subscribe(
       result => this.userId = result
@@ -38,6 +39,7 @@ export class UsarBibliotecaRouteComponent implements OnInit{
   //METODO QUE CHAMA OS METODOS QUE BUSCAM AS INFORMAÇÕES DA BIBLIOTECA E LIVROS
   private initBiblioteca() {
     const id = this.route.snapshot.paramMap.get('biblioteca');
+    console.log(id);
     if(id != null) {
       this.getBiblioId(id);
       this.getLibraryBook(id);
@@ -58,5 +60,12 @@ export class UsarBibliotecaRouteComponent implements OnInit{
     )
   }
 
+  //METODO PARA MANDAR O ISBN DO LIVRO PARA A URL
+  
+  goToBook(isbn: any) {
+    let url = this.route.snapshot.url.join('/') + '/'+isbn;
+    console.log(url);
+    this.router.navigateByUrl(url);
+  };
 
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Biblioteca } from '../model/Biblioteca';
-import { UsarBibliotecaRouteComponent } from '../components/usar-biblioteca-route/usar-biblioteca-route.component';
 
 
 @Injectable({
@@ -30,4 +29,9 @@ export class BibliotecaServiceService {
     return this.http.get<any>(url);
   }
 
+  //METODO DO LADO DO SERVIÇO QUE RETORNA UM LIVRO ESPECIFICO DE UMA BIBLIOTECA
+  getBook(libraryId:string, bookId:string) {
+    const url = this.servidor+'/v1/library/'+libraryId+'/book/'+bookId; 
+    return this.http.get<any>(url);
+  }
 }
