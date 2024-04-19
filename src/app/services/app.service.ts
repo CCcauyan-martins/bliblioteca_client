@@ -7,11 +7,14 @@ import { BehaviorSubject } from 'rxjs';
 export class AppService {
   private userId = new BehaviorSubject('Wonderful User');
   getUserId = this.userId.asObservable();
+  
 
   constructor() { }
 
   setUserId(userId: string){
-    this.userId.next(userId);
+   this.userId.next(userId);
   }
+
+  
 
 }

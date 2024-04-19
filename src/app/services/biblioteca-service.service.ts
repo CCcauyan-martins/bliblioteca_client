@@ -34,4 +34,18 @@ export class BibliotecaServiceService {
     const url = this.servidor+'/v1/library/'+libraryId+'/book/'+bookId; 
     return this.http.get<any>(url);
   }
+
+  //METODOS PARA HISTORICO E CHECKOUT
+  getCheckedOutBooks(userId:string) {
+    //https://193.136.62.24/v1/user/checked-out?userId=Wonderful%20User
+    const url = this.servidor+'/v1/user/checked-out?userId='+ userId; 
+    return this.http.get<any>(url);
+  }
+
+  getCheckedHistory(userId: string) {
+    //https://193.136.62.24/v1/user/checkout-history?userId=Wonderful%20User
+    const url = this.servidor+'/v1/user/checkout-history?userId='+ userId; 
+    return this.http.get<any>(url);
+  }
+
 }

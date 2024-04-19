@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { SelecionaBibliotecaComponent } from './components/seleciona-biblioteca/seleciona-biblioteca.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BibliotecaServiceService } from './services/biblioteca-service.service';
@@ -35,10 +35,22 @@ export class AppComponent {
     { label: 'Utilizador', value: 'TWAM' }
   ];
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) { }
 
   updateUser(){
     this.appService.setUserId(this.selectedUser);
   }
+
+  
+ 
+  
+
+  
+  goToUser(id:any) {
+    let url = 'utilizadores' + '/' + id;
+    console.log(url);
+    this.router.navigateByUrl(url);
+  }
+  
 
 }

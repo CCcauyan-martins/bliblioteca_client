@@ -63,9 +63,11 @@ export class UsarBibliotecaRouteComponent implements OnInit{
   //METODO PARA MANDAR O ISBN DO LIVRO PARA A URL
   
   goToBook(isbn: any) {
-    let url = this.route.snapshot.url.join('/') + '/'+isbn;
+    //pegar o library ID e BookId e fazer url
+    let url = 'detalhes/'+this.biblioteca.id+'/'+isbn;
     console.log(url);
     this.router.navigateByUrl(url);
   };
 
+  
 }
