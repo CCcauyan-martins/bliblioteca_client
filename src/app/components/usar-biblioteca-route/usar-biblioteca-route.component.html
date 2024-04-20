@@ -31,11 +31,16 @@
 
       </div>
 
-
+      <label class="text-muted mb-2"><strong>Adicionar livro: </strong></label>
+      <div class="row col-md-6">
+        <div class="input-group mb-3 col-md-3">
+          <input type="text" class="form-control border border-dark" placeholder="Digite o identificador do livro" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="bookId">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" (click)="addBookLibrary(bookId)">Adicionar Livro</button>
+          </div>
+        </div>
+      </div>
       
-      <button *ngIf="biblioteca.open" type="button" class="buttons mx-3">
-        Ver livros utilizador
-      </button>
 
 
       <h2 class="mt-4 mb-3">Livros Disponíveis: </h2>

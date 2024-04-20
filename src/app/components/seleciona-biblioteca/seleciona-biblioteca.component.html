@@ -21,14 +21,14 @@
               {{bibio.openDays}}
             </p>
             <p>
-              <strong>Horário de Funionamento:</strong>
+              <strong>Horário de Funcionamento:</strong>
               Aberta das {{bibio.openTime}} até {{bibio.closeTime}}.
             </p>
             
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a *ngIf="bibio.open" (click)="goToBibiloteca(bibio.id)">
-                  <button *ngIf="bibio.open" type="button" class="btn btn-sm btn-outline-success">Selecionar em rota</button> 
+                  <button *ngIf="bibio.open" type="button" class="btn btn-sm btn-outline-success">Ver Biblioteca</button> 
                 </a>
                 <button *ngIf="!bibio.open" type="button" disabled class="btn btn-sm btn-outline-danger">Selecionar</button>
               </div>

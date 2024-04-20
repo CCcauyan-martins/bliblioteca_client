@@ -5,6 +5,7 @@ import { BibliotecaServiceService } from '../../services/biblioteca-service.serv
 import { Biblioteca } from '../../model/Biblioteca';
 import { SelecionaBibliotecaComponent } from '../seleciona-biblioteca/seleciona-biblioteca.component';
 import { AppService } from '../../services/app.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { AppService } from '../../services/app.service';
   imports: [
     CommonModule,
     RouterModule,
-    SelecionaBibliotecaComponent
+    SelecionaBibliotecaComponent,
+    FormsModule
   ],
   templateUrl: './usar-biblioteca-route.component.html',
   styleUrl: './usar-biblioteca-route.component.css'
@@ -22,6 +24,7 @@ export class UsarBibliotecaRouteComponent implements OnInit{
   biblioteca:Biblioteca;
   books: any = [];
   userId:string='';
+  bookId:string='';
   @Input('selectedLibraryId') libraryId='';
 
   constructor(private bibliotecaService: BibliotecaServiceService, private route:ActivatedRoute, private appService: AppService, private router: Router) {
@@ -44,6 +47,7 @@ export class UsarBibliotecaRouteComponent implements OnInit{
       this.getBiblioId(id);
       this.getLibraryBook(id);
     }
+
     
   }
   //METODO QUE PEGA AS INFORMAÇÕES DA BIBLIOTECA
@@ -60,6 +64,14 @@ export class UsarBibliotecaRouteComponent implements OnInit{
     )
   }
 
+  addBookLibrary(bookId: string) {
+    this.bibliotecaService.addBookLibrary(this.biblioteca.id, bookId).subscribe(
+      (value) => {
+        this.books.push(value);
+      }
+    )
+  }
+
   //METODO PARA MANDAR O ISBN DO LIVRO PARA A URL
   
   goToBook(isbn: any) {
@@ -68,6 +80,8 @@ export class UsarBibliotecaRouteComponent implements OnInit{
     console.log(url);
     this.router.navigateByUrl(url);
   };
+
+  
 
   
 }

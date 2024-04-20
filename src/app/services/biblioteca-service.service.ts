@@ -48,4 +48,19 @@ export class BibliotecaServiceService {
     return this.http.get<any>(url);
   }
 
+  removeBook(libraryId:string, bookId:string, stock: Object) {
+    const url = this.servidor+'/v1/library/'+libraryId+'/book/'+bookId; 
+    return this.http.put<any>(url, stock);
+  }
+
+  addBook(libraryId:string, bookId:string, newBook: Object) {
+    const url = this.servidor+'/v1/library/'+libraryId+'/book/'+bookId; 
+    return this.http.put<any>(url, newBook);
+  }
+
+  addBookLibrary(libraryId:string, bookId:string) {
+    const url = this.servidor+'/v1/library/'+libraryId+'/book/'+bookId;
+    return this.http.post<any>(url, {"stock": 1});
+  }
+
 }
